@@ -1,6 +1,19 @@
 package tech.icey.creg.entity;
 
-public abstract class Entity {
+public abstract sealed class Entity permits
+        Bitflag,
+        Bitmask,
+        Constant,
+        Enum,
+        Function,
+        FunctionTypedef,
+        Member,
+        OpaqueHandle,
+        OpaqueTypedef,
+        Param,
+        Structure,
+        Variant
+{
     public final String name;
 
     protected Entity(String name) {

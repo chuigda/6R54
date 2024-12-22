@@ -1,3 +1,3 @@
 package tech.icey.creg.type;
 
-public interface Type {}
+public sealed interface Type permits IdentifierType, ArrayType, PointerType {}
