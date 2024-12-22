@@ -1,4 +1,7 @@
-package tech.icey.creg.entity;
+package tech.icey.creg;
+
+import tech.icey.creg.entity.*;
+import tech.icey.creg.entity.Enum;
 
 import java.util.HashMap;
 
@@ -11,7 +14,7 @@ public final class Registry {
     public final HashMap<String, OpaqueHandle> opaqueHandles;
     public final HashMap<String, Structure> structures;
     public final HashMap<String, Bitmask> bitmasks;
-    public final HashMap<String, Enum> enums;
+    public final HashMap<String, tech.icey.creg.entity.Enum> enums;
 
     public Registry(
             String registryName,
@@ -21,7 +24,7 @@ public final class Registry {
             HashMap<String, OpaqueHandle> opaqueHandles,
             HashMap<String, Structure> structures,
             HashMap<String, Bitmask> bitmasks,
-            HashMap<String, Enum> enums
+            HashMap<String, tech.icey.creg.entity.Enum> enums
     ) {
         this.registryName = registryName;
         this.constants = constants;
