@@ -1,5 +1,7 @@
 package tech.icey.creg.entity;
 
+import tech.icey.xjbutil.container.Option;
+
 public abstract sealed class Entity permits
         Bitflag,
         Bitmask,
@@ -21,18 +23,18 @@ public abstract sealed class Entity permits
     }
 
     public final <T> void setExtra(T extra) {
-        assert this.extra == null;
-        this.extra = extra;
+        assert this.extra.isNone();
+        this.extra = Option.some(extra);
     }
 
     public final <T> T getExtra() {
-        if (extra == null) {
-            return null;
+        if (extra.isNone()) {
+            throw new IllegalStateException("Entity::extra is not set");
         }
 
         //noinspection unchecked
-        return (T) extra;
+        return (T) extra.get();
     }
 
-    private Object extra = null;
+    private Option<Object> extra = Option.none();
 }

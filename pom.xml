@@ -12,4 +12,12 @@
         <maven.compiler.release>23</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>tech.icey</groupId>
+            <artifactId>xjbutil</artifactId>
+            <version>0.1.0-bravo</version>
+        </dependency>
+    </dependencies>
 </project>
