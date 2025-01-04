@@ -8,6 +8,7 @@ import java.util.HashMap;
 public final class Registry {
     public final String registryName;
 
+    public final HashMap<String, Alias> aliases;
     public final HashMap<String, Constant> constants;
     public final HashMap<String, Function> functions;
     public final HashMap<String, OpaqueTypedef> opaqueTypedefs;
@@ -18,6 +19,7 @@ public final class Registry {
 
     public Registry(
             String registryName,
+            HashMap<String, Alias> aliases,
             HashMap<String, Constant> constants,
             HashMap<String, Function> functions,
             HashMap<String, OpaqueTypedef> opaqueTypedefs,
@@ -27,6 +29,7 @@ public final class Registry {
             HashMap<String, Enum> enums
     ) {
         this.registryName = registryName;
+        this.aliases = aliases;
         this.constants = constants;
         this.functions = functions;
         this.opaqueTypedefs = opaqueTypedefs;
@@ -37,6 +40,7 @@ public final class Registry {
     }
 
     public static Registry mergeRegistry(String mergedRegistryName, Registry ...registries) {
+        HashMap <String, Alias> aliases = new HashMap<String, Alias>();
         HashMap <String, Constant> constants = new HashMap<String, Constant>();
         HashMap <String, Function> functions = new HashMap<String, Function>();
         HashMap <String, OpaqueTypedef> opaqueTypedefs = new HashMap<String, OpaqueTypedef>();
@@ -46,6 +50,7 @@ public final class Registry {
         HashMap <String, Enum> enums = new HashMap<String, Enum>();
 
         for (Registry registry : registries) {
+            aliases.putAll(registry.aliases);
             constants.putAll(registry.constants);
             functions.putAll(registry.functions);
             opaqueTypedefs.putAll(registry.opaqueTypedefs);
@@ -57,6 +62,7 @@ public final class Registry {
 
         return new Registry(
                 mergedRegistryName,
+                aliases,
                 constants,
                 functions,
                 opaqueTypedefs,
